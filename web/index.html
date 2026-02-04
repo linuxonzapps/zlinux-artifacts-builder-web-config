@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>zLinux YAML Template Builder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        zLinux Artifacts YAML Template Builder
+    </header>
+
+    <main>
+        <!-- FORM -->
+        <div class="card">
+            <h2>Template Configuration</h2>
+
+            <label>Template (mandatory)</label>
+            <input id="template" value="templates/loz-script-project.yaml" oninput="render()" />
+
+            <h2 style="margin-top:1rem">Artifacts (Overrides)</h2>
+            <div id="artifacts"></div>
+
+            <button onclick="addArtifact()">+ Add Artifact</button>
+
+            <div class="example-section">
+                <h3>📋 Example Configuration</h3>
+                <pre>template: templates/loz-script-project.yaml
+overrides:
+  artifacts:
+    - type: script
+      version: 2025-09-07T16-13-09Z
+      build_script:
+        repo_name: linux-on-ibm-z-scripts
+        path: src/build.sh
+        docker_image: ubuntu:22.04</pre>
+                <button onclick="loadExample()">Load Example</button>
+            </div>
+
+            <div id="errors" class="error"></div>
+        </div>
+
+        <!-- YAML -->
+        <div class="card">
+            <h2>Generated YAML</h2>
+            <pre id="yaml"></pre>
+
+            <button class="secondary" onclick="copyYAML()">Copy</button>
+            <button onclick="downloadYAML()">Download</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
